@@ -1,0 +1,116 @@
+{
+  "brand": {
+    "name": "Moroccan Medieval",
+    "style": "moroccan-medieval"
+  },
+  "assets": [
+    {
+      "id": "batch-renamer",
+      "type": "plugin",
+      "name": "Batch Renamer Pro",
+      "description": "Renomme des dizaines d'instances en un clic : préfixe/suffixe, recherche-remplace, numérotation automatique, prévisualisation avant application.",
+      "priceRobux": 199,
+      "status": "staging",
+      "thumbnail": "thumbnails/thumb-batch-rename-pro.png",
+      "files": ["plugins/batch-renamer.lua"],
+      "tags": ["productivité", "studio", "renommage"],
+      "polycount": null,
+      "qa": [
+        { "done": true, "label": "Syntaxe Luau validée" },
+        { "done": false, "label": "Test fonctionnel dans Roblox Studio" },
+        { "done": false, "label": "Toolbar + boutons vérifiés" },
+        { "done": false, "label": "Undo/redo vérifié" },
+        { "done": true, "label": "Thumbnail prêt" },
+        { "done": false, "label": "Description + tags rédigés" }
+      ],
+      "createdAt": "2026-09-28"
+    },
+    {
+      "id": "weld-master",
+      "type": "plugin",
+      "name": "Weld Master",
+      "description": "Crée des WeldConstraint en un clic entre les pièces sélectionnées : soudure rigide instantanée pour véhicules, mécanismes et constructions.",
+      "priceRobux": 199,
+      "status": "staging",
+      "thumbnail": "thumbnails/thumb-weld-master.png",
+      "files": ["plugins/weld-master.lua"],
+      "tags": ["welding", "constraints", "construction"],
+      "polycount": null,
+      "qa": [
+        { "done": true, "label": "Syntaxe Luau validée" },
+        { "done": false, "label": "Test fonctionnel dans Roblox Studio" },
+        { "done": false, "label": "Toolbar + boutons vérifiés" },
+        { "done": false, "label": "Undo/redo vérifié" },
+        { "done": true, "label": "Thumbnail prêt" },
+        { "done": false, "label": "Description + tags rédigés" }
+      ],
+      "createdAt": "2026-09-28"
+    },
+    {
+      "id": "moroccan-medieval-pack",
+      "type": "pack",
+      "name": "Moroccan Medieval Props Pack",
+      "description": "Pack phare de la marque : 10 props low-poly d'inspiration Maroc médiéval — lanterne fanous, fontaine à zellige, arche en fer à cheval, théière en laiton, tagine, table mosaïque, mabkhara, nimcha, bouclier étoilé, tapis berbère. Couleurs de sommets : zellige bleu/vert/blanc, laiton, terracotta.",
+      "priceRobux": 399,
+      "status": "staging",
+      "thumbnail": "thumbnails/thumb-moroccan-medieval-pack.png",
+      "files": [
+        "packs/moroccan-medieval/generate_moroccan_props.py",
+        "packs/moroccan-medieval/fanous.obj",
+        "packs/moroccan-medieval/zellige_fountain.obj",
+        "packs/moroccan-medieval/horseshoe_arch.obj",
+        "packs/moroccan-medieval/brass_teapot.obj",
+        "packs/moroccan-medieval/tagine.obj",
+        "packs/moroccan-medieval/mosaic_table.obj",
+        "packs/moroccan-medieval/mabkhara.obj",
+        "packs/moroccan-medieval/nimcha.obj",
+        "packs/moroccan-medieval/star_shield.obj",
+        "packs/moroccan-medieval/berber_rug.obj",
+        "packs/moroccan-medieval/moroccan_medieval.mtl"
+      ],
+      "tags": ["moroccan", "medieval", "props", "zellige", "low-poly"],
+      "polycount": 2864,
+      "qa": [
+        { "done": true, "label": "OBJ re-parsés sans erreur (10/10)" },
+        { "done": false, "label": "Import dans Roblox Studio vérifié" },
+        { "done": false, "label": "Échelle et orientation vérifiées" },
+        { "done": false, "label": "Matériaux assignés (laiton métal, verre ambré)" },
+        { "done": true, "label": "Thumbnail prêt" },
+        { "done": false, "label": "Description + tags rédigés" }
+      ],
+      "createdAt": "2026-09-28"
+    },
+    {
+      "id": "medieval-props-pack",
+      "type": "pack",
+      "name": "Medieval Props Pack (archive)",
+      "description": "Premier pack générique (10 props médiévaux européens). Remplacé par le pack Moroccan Medieval — conservé en archive uniquement.",
+      "priceRobux": 349,
+      "status": "archivé",
+      "thumbnail": "thumbnails/thumb-medieval-props-pack.png",
+      "files": [
+        "packs/medieval-props/generate_medieval_props.py"
+      ],
+      "tags": ["medieval", "props", "archive"],
+      "polycount": 1226,
+      "qa": [
+        { "done": true, "label": "OBJ re-parsés sans erreur (10/10)" }
+      ],
+      "createdAt": "2026-09-28"
+    }
+  ],
+  "waves": [
+    {
+      "id": "vague-1",
+      "date": "2026-09-28",
+      "notes": "Production initiale : 2 plugins + pack médiéval générique (archivé ensuite).",
+      "assets": ["batch-renamer", "weld-master", "medieval-props-pack"]
+    },
+    {
+      "id": "vague-2",
+      "date": "2026-09-28",
+      "notes": "Pivot Moroccan Medieval : nouveau pack phare (10 props, 2 864 tris) + rebranding complet des thumbnails (terracotta/zellige/or).",
+      "assets": ["moroccan-medieval-pack"]
+    }
+  ]
+}

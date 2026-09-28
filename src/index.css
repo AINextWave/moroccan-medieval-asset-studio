@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --color-night: #0E2A3A;
+  --color-night-light: #152f42;
+  --color-night-lighter: #1c3a4f;
+  --color-zellige: #0F6B5C;
+  --color-zellige-light: #158a73;
+  --color-zellige-dark: #0a4a40;
+  --color-terracotta: #C96F4A;
+  --color-terracotta-light: #d9845f;
+  --color-sable: #E8DCC8;
+  --color-sable-dark: #c8b89a;
+  --color-or: #C9A227;
+  --color-or-light: #e0b730;
+  --color-or-dark: #a07d1a;
+
+  --font-marcellus: 'Marcellus', serif;
+  --font-amiri: 'Amiri', serif;
+  --font-inter: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0E2A3A;
+  color: #E8DCC8;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Zellige SVG Background */
+.zellige-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='%23C9A227' stroke-width='0.8'%3E%3Crect x='10' y='10' width='60' height='60'/%3E%3Cpolygon points='40,2 78,40 40,78 2,40'/%3E%3Cpolygon points='40,18 62,40 40,62 18,40'/%3E%3Cline x1='40' y1='2' x2='40' y2='18'/%3E%3Cline x1='78' y1='40' x2='62' y2='40'/%3E%3Cline x1='40' y1='78' x2='40' y2='62'/%3E%3Cline x1='2' y1='40' x2='18' y2='40'/%3E%3Ccircle cx='40' cy='40' r='6'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 80px 80px;
+}
+
+/* Horseshoe arch card top */
+.arch-card-header {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+}
+
+.arch-card-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;
+  height: 130%;
+  border-radius: 60% 60% 0 0 / 80% 80% 0 0;
+  background: inherit;
+  border: inherit;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0E2A3A;
+}
+::-webkit-scrollbar-thumb {
+  background: #0F6B5C;
+  border-radius: 3px;
+}
+
+/* Transitions */
+.transition-smooth {
+  transition: all 0.2s ease;
+}
+
+/* Drag and Drop */
+.dragging {
+  opacity: 0.5;
+}
+
+/* Arch shape for thumbnails using clip-path */
+.arch-clip {
+  clip-path: path('M0,120 L0,50 Q0,0 60,0 Q120,0 120,50 L120,120 Z');
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #152f42 25%, #1c3a4f 50%, #152f42 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}

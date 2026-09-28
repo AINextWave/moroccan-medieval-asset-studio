@@ -1,4 +1,4 @@
-import { LayoutDashboard, BookOpen, TrendingUp, Kanban, X, Home, HelpCircle, Map } from 'lucide-react';
+import { LayoutDashboard, BookOpen, TrendingUp, Kanban, X, Home, HelpCircle, Map, Wrench } from 'lucide-react';
 import { navigate } from '../lib/nav';
 
 const NAV_ITEMS = [
@@ -7,6 +7,7 @@ const NAV_ITEMS = [
   { id: 'catalogue', label: 'Catalogue', icon: BookOpen },
   { id: 'simulator', label: 'Simulateur', icon: TrendingUp },
   { id: 'pipeline', label: 'Pipeline', icon: Kanban },
+  { id: 'outils', label: 'Outils', icon: Wrench },
 ];
 
 const NAV_SECONDARY = [

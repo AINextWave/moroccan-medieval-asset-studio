@@ -1,4 +1,4 @@
-export const VALID_PAGES = ['home', 'dashboard', 'catalogue', 'simulator', 'pipeline', 'faq', 'roadmap'];
+export const VALID_PAGES = ['home', 'dashboard', 'catalogue', 'simulator', 'pipeline', 'faq', 'roadmap', 'outils'];
 
 export function parseRoute() {
   const hash = (typeof window !== 'undefined' ? window.location.hash : '').replace(/^#/, '') || '/';

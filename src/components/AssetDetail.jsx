@@ -35,12 +35,21 @@ export default function AssetDetail({ asset, onClose, toggleQA, updateStatus }) 
             <h2 className="font-marcellus text-sable text-xl">{asset.name}</h2>
             <p className="text-xs text-sable/40 mt-1">ID: <code className="text-or/60">{asset.id}</code></p>
           </div>
-          <button
-            onClick={onClose}
-            className="text-sable/40 hover:text-sable transition-colors p-1 rounded-lg hover:bg-white/5"
-          >
-            <X size={20} />
-          </button>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <a
+              href={`#/asset/${asset.id}`}
+              className="text-xs text-or hover:text-or-light font-medium px-3 py-1.5 rounded-lg border border-or/30 hover:border-or/60 transition-colors inline-flex items-center gap-1"
+            >
+              Fiche complète
+              <ChevronRight size={13} />
+            </a>
+            <button
+              onClick={onClose}
+              className="text-sable/40 hover:text-sable transition-colors p-1 rounded-lg hover:bg-white/5"
+            >
+              <X size={20} />
+            </button>
+          </div>
         </div>
 
         <div className="flex-1 p-6 space-y-6">

@@ -60,15 +60,23 @@ function Step({ n, icon: Icon, title, children }) {
   );
 }
 
-const INSTALL_RESUME = `1. Python 3.10 ou 3.11 (64-bit) — cocher "Add python.exe to PATH"
-2. Visual Studio 2022 Community — charge "Développement Desktop en C++"
-3. Pilote NVIDIA à jour + CUDA Toolkit
-4. git clone https://github.com/Stability-AI/stable-fast-3d
-5. python -m venv venv && .\\venv\\Scripts\\Activate.ps1
-6. pip install torch torchvision --index-url https://download.pytorch.org/whl/cu126
-7. pip install -U setuptools==69.5.1 && pip install wheel && pip install -r requirements.txt
-8. Compte Hugging Face gratuit → demander l'accès au modèle stabilityai/stable-fast-3d
-9. huggingface-cli login (token read)`;
+const INSTALL_MANUEL = [
+  'Python 3.10 ou 3.11 (64-bit) depuis python.org \u2014 cocher "Add python.exe to PATH"',
+  'Visual Studio 2022 Community \u2014 charge "D\u00e9veloppement Desktop en C++"',
+  'Pilote NVIDIA \u00e0 jour + CUDA Toolkit (m\u00eame version que le PyTorch choisi)',
+  'Compte Hugging Face gratuit : demander l\u2019acc\u00e8s au mod\u00e8le stabilityai/stable-fast-3d et cr\u00e9er un token \u00ab read \u00bb',
+];
+
+const INSTALL_COMMANDS = `cd $HOME
+git clone https://github.com/Stability-AI/stable-fast-3d
+cd stable-fast-3d
+python -m venv venv
+./venv/Scripts/Activate.ps1
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu126
+pip install -U setuptools==69.5.1
+pip install wheel
+pip install -r requirements.txt
+huggingface-cli login`;
 
 const PHOTO_RULES = [
   'Fond uni et clair (blanc idéal) — le modèle détoure l’objet à partir du fond',
@@ -148,7 +156,11 @@ export default function Outils() {
           {installOpen && (
             <div className="px-5 pb-5">
               <div className="border-t border-white/5 pt-4">
-                <CodeBlock code={INSTALL_RESUME} label="Étapes d'installation (PowerShell)" />
+                <p className="text-sm text-sable/70 mb-2 font-medium">À faire à la main (navigateur / installeurs, pas dans PowerShell) :</p>
+                <ul className="list-disc list-inside text-sm text-sable/60 space-y-1 mb-4">
+                  {INSTALL_MANUEL.map((s, i) => <li key={i}>{s}</li>)}
+                </ul>
+                <CodeBlock code={INSTALL_COMMANDS} label="Commandes PowerShell — à coller une par une" />
                 <p className="text-xs text-sable/40 mt-3">
                   Coût : 0 $. Le modèle est « gated » sur Hugging Face : accès gratuit sur demande,
                   généralement accepté automatiquement.

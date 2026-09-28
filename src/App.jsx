@@ -1,17 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu } from 'lucide-react';
 import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Catalogue from './pages/Catalogue';
 import Simulator from './pages/Simulator';
 import Pipeline from './pages/Pipeline';
+import FAQ from './pages/FAQ';
+import Roadmap from './pages/Roadmap';
+import AssetPage from './pages/AssetPage';
+import NotFound from './pages/NotFound';
 import { Spinner } from './components/ui';
 import { useCatalogue } from './hooks/useCatalogue';
+import { parseRoute } from './lib/nav';
 
 export default function App() {
-  const [activePage, setActivePage] = useState('dashboard');
+  const [route, setRoute] = useState(parseRoute);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { data, loading, error, toggleQA, updateStatus } = useCatalogue();
+
+  useEffect(() => {
+    const onHashChange = () => {
+      setRoute(parseRoute());
+      setMobileOpen(false);
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
 
   const renderPage = () => {
     if (loading) return <Spinner />;
@@ -25,30 +42,41 @@ export default function App() {
     );
     if (!data) return null;
 
-    switch (activePage) {
+    switch (route.page) {
+      case 'home': return <Home data={data} />;
       case 'dashboard': return <Dashboard data={data} />;
       case 'catalogue': return <Catalogue data={data} toggleQA={toggleQA} updateStatus={updateStatus} />;
       case 'simulator': return <Simulator data={data} />;
       case 'pipeline': return <Pipeline data={data} updateStatus={updateStatus} />;
-      default: return <Dashboard data={data} />;
+      case 'faq': return <FAQ />;
+      case 'roadmap': return <Roadmap data={data} />;
+      case 'asset': {
+        const asset = data.assets.find(a => a.id === route.id);
+        return asset
+          ? <AssetPage asset={asset} toggleQA={toggleQA} updateStatus={updateStatus} />
+          : <NotFound />;
+      }
+      default: return <NotFound />;
     }
   };
 
+  // Sidebar highlights 'catalogue' when viewing an asset detail page
+  const activeNav = route.page === 'asset' ? 'catalogue' : route.page;
+
   return (
-    <div className="min-h-screen bg-night font-inter">
+    <div className="min-h-screen bg-night font-inter flex flex-col">
       {/* Zellige background pattern */}
       <div className="zellige-bg" />
 
       {/* Sidebar */}
       <Sidebar
-        activePage={activePage}
-        onNavigate={setActivePage}
+        activePage={activeNav}
         mobileOpen={mobileOpen}
         onMobileClose={() => setMobileOpen(false)}
       />
 
       {/* Main content */}
-      <div className="lg:pl-64 relative z-10">
+      <div className="lg:pl-64 relative z-10 flex flex-col flex-1">
         {/* Top bar (mobile) */}
         <header className="lg:hidden sticky top-0 z-30 flex items-center gap-4 px-4 py-3 bg-night/90 backdrop-blur-sm border-b border-white/5">
           <button
@@ -62,9 +90,12 @@ export default function App() {
         </header>
 
         {/* Page */}
-        <main className="p-6 md:p-8 max-w-7xl mx-auto">
+        <main className="p-6 md:p-8 max-w-7xl mx-auto w-full flex-1">
           {renderPage()}
         </main>
+
+        {/* Footer */}
+        <Footer />
       </div>
     </div>
   );

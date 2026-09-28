@@ -9,6 +9,7 @@ import Simulator from './pages/Simulator';
 import Pipeline from './pages/Pipeline';
 import FAQ from './pages/FAQ';
 import Roadmap from './pages/Roadmap';
+import Outils from './pages/Outils';
 import AssetPage from './pages/AssetPage';
 import NotFound from './pages/NotFound';
 import { Spinner } from './components/ui';
@@ -50,6 +51,7 @@ export default function App() {
       case 'pipeline': return <Pipeline data={data} updateStatus={updateStatus} />;
       case 'faq': return <FAQ />;
       case 'roadmap': return <Roadmap data={data} />;
+      case 'outils': return <Outils />;
       case 'asset': {
         const asset = data.assets.find(a => a.id === route.id);
         return asset
